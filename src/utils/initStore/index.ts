@@ -1,5 +1,3 @@
 import initStore from './initStore'
 
-export {
-  initStore
-}
+export default initStore

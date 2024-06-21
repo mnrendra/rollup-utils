@@ -1,7 +1,15 @@
-import type {} from './types'
+import type {
+  Store
+} from './types'
 
-import {} from './utils'
+import {
+  initStore
+} from './utils'
 
-export type {}
+export type {
+  Store
+}
 
-export {}
+export {
+  initStore
+}
