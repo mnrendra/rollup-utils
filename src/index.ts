@@ -3,7 +3,8 @@ import type {
 } from './types'
 
 import {
-  initStore
+  initStore,
+  printInfo
 } from './utils'
 
 export type {
@@ -11,5 +12,6 @@ export type {
 }
 
 export {
-  initStore
+  initStore,
+  printInfo
 }
