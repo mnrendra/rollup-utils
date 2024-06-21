@@ -1,6 +1,6 @@
 {
   "name": "@mnrendra/rollup-utils",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Rollup plugin utilities.",
   "private": false,
   "main": "dist/index.js",
