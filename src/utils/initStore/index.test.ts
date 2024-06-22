@@ -2,6 +2,7 @@ import type { Store } from '../../types'
 
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
+import store from '@tests/stubs/store'
 
 import index from '.'
 
@@ -24,8 +25,6 @@ describe('Test `initStore` util:', () => {
     })
 
     it('Should initialize the store with package data!', async () => {
-      const store: Store = {}
-
       await index(store)
 
       expect(store.name).toBe('@mnrendra/rollup-plugin-dummy')
@@ -40,9 +39,26 @@ describe('Test `initStore` util:', () => {
 
     let idx = 0
 
-    const firstStore: Store = {}
-    const secondStore: Store = {}
-    const thirdStore: Store = {}
+    const firstStore: Store = {
+      pluginName: 'first',
+      name: '@mnrendra/rollup-plugin-first',
+      version: '1.0.0',
+      homepage: 'http://localhost'
+    }
+
+    const secondStore: Store = {
+      pluginName: 'second',
+      name: '@mnrendra/rollup-plugin-second',
+      version: '2.0.0',
+      homepage: 'http://localhost'
+    }
+
+    const thirdStore: Store = {
+      pluginName: 'third',
+      name: '@mnrendra/rollup-plugin-third',
+      version: '3.0.0',
+      homepage: 'http://localhost'
+    }
 
     afterAll(() => {
       unmockReadPackage(mockedReadPackage)
@@ -52,7 +68,7 @@ describe('Test `initStore` util:', () => {
       beforeEach(() => {
         mockedReadPackage.mockResolvedValue({
           name: `@mnrendra/rollup-plugin-${names[idx]}`,
-          version: `${idx + 1}.0.0-development`,
+          version: `${idx + 1}.0.0`,
           homepage: 'http://localhost'
         })
 
@@ -64,7 +80,7 @@ describe('Test `initStore` util:', () => {
 
         expect(firstStore.name).toBe('@mnrendra/rollup-plugin-first')
         expect(firstStore.pluginName).toBe('first')
-        expect(firstStore.version).toBe('1.0.0-development')
+        expect(firstStore.version).toBe('1.0.0')
         expect(firstStore.homepage).toBe('http://localhost')
       })
 
@@ -73,7 +89,7 @@ describe('Test `initStore` util:', () => {
 
         expect(secondStore.name).toBe('@mnrendra/rollup-plugin-second')
         expect(secondStore.pluginName).toBe('second')
-        expect(secondStore.version).toBe('2.0.0-development')
+        expect(secondStore.version).toBe('2.0.0')
         expect(secondStore.homepage).toBe('http://localhost')
       })
 
@@ -82,7 +98,7 @@ describe('Test `initStore` util:', () => {
 
         expect(thirdStore.name).toBe('@mnrendra/rollup-plugin-third')
         expect(thirdStore.pluginName).toBe('third')
-        expect(thirdStore.version).toBe('3.0.0-development')
+        expect(thirdStore.version).toBe('3.0.0')
         expect(thirdStore.homepage).toBe('http://localhost')
       })
     })
@@ -90,28 +106,28 @@ describe('Test `initStore` util:', () => {
     it('Should able to memorize the first data!', async () => {
       expect(firstStore.name).toBe('@mnrendra/rollup-plugin-first')
       expect(firstStore.pluginName).toBe('first')
-      expect(firstStore.version).toBe('1.0.0-development')
+      expect(firstStore.version).toBe('1.0.0')
       expect(firstStore.homepage).toBe('http://localhost')
     })
 
     it('Should able to memorize the second data!', async () => {
       expect(secondStore.name).toBe('@mnrendra/rollup-plugin-second')
       expect(secondStore.pluginName).toBe('second')
-      expect(secondStore.version).toBe('2.0.0-development')
+      expect(secondStore.version).toBe('2.0.0')
       expect(secondStore.homepage).toBe('http://localhost')
     })
 
     it('Should able to memorize the first data!', async () => {
       expect(firstStore.name).toBe('@mnrendra/rollup-plugin-first')
       expect(firstStore.pluginName).toBe('first')
-      expect(firstStore.version).toBe('1.0.0-development')
+      expect(firstStore.version).toBe('1.0.0')
       expect(firstStore.homepage).toBe('http://localhost')
     })
 
     it('Should able to memorize the second data!', async () => {
       expect(secondStore.name).toBe('@mnrendra/rollup-plugin-second')
       expect(secondStore.pluginName).toBe('second')
-      expect(secondStore.version).toBe('2.0.0-development')
+      expect(secondStore.version).toBe('2.0.0')
       expect(secondStore.homepage).toBe('http://localhost')
     })
   })
