@@ -21,16 +21,16 @@ const initStore = async (
   const pluginName = name.replace(PLUGIN_PREFIX, '')
 
   // Save the plugin `pluginName` to the store.
-  store.pluginName = pluginName
+  store.pluginName = `${pluginName}`
 
   // Save the plugin `name` to the store.
-  store.name = name
+  store.name = `${name}`
 
   // Save the plugin `version` to the store.
-  store.version = version
+  store.version = `${version}`
 
   // Save the plugin `homepage` to the store.
-  store.homepage = homepage
+  store.homepage = `${homepage}`
 }
 
 // Export the `initStore` as the default value.

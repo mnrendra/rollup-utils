@@ -109,7 +109,10 @@ const config: Config = {
   moduleNameMapper: pathsToModuleNameMapper({
     // @tests
     '@tests': ['<rootDir>/tests'],
-    '@tests/*': ['<rootDir>/tests/*']
+    '@tests/*': ['<rootDir>/tests/*'],
+    // @types
+    '@types': ['<rootDir>/src/types'],
+    '@types/*': ['<rootDir>/src/types/*']
   }),
 
   // An array of regexp pattern strings, matched against all module paths before

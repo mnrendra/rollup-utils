@@ -4,6 +4,7 @@ import { COLORS } from './consts'
 
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
+import store from '@tests/stubs/store'
 
 import { initStore, printInfo } from '.'
 
@@ -27,8 +28,6 @@ describe('Test all utils:', () => {
       })
 
       it('Should initialize the store with package data!', async () => {
-        const store: Store = {}
-
         await initStore(store)
 
         expect(store.name).toBe('@mnrendra/rollup-plugin-dummy')
@@ -43,9 +42,26 @@ describe('Test all utils:', () => {
 
       let idx = 0
 
-      const firstStore: Store = {}
-      const secondStore: Store = {}
-      const thirdStore: Store = {}
+      const firstStore: Store = {
+        pluginName: 'first',
+        name: '@mnrendra/rollup-plugin-first',
+        version: '1.0.0',
+        homepage: 'http://localhost'
+      }
+
+      const secondStore: Store = {
+        pluginName: 'second',
+        name: '@mnrendra/rollup-plugin-second',
+        version: '2.0.0',
+        homepage: 'http://localhost'
+      }
+
+      const thirdStore: Store = {
+        pluginName: 'third',
+        name: '@mnrendra/rollup-plugin-third',
+        version: '3.0.0',
+        homepage: 'http://localhost'
+      }
 
       afterAll(() => {
         unmockReadPackage(mockedReadPackage)
@@ -123,8 +139,6 @@ describe('Test all utils:', () => {
   describe('Test `printInfo` util:', () => {
     describe('By mocking `@mnrendra/read-package` to resolve a dummy data:', () => {
       const { PRIMARY, SECONDARY, RESET } = COLORS
-
-      const store: Store = {}
 
       beforeAll(async () => {
         mockedReadPackage.mockResolvedValue({

@@ -1,11 +1,10 @@
-import type { Store } from '../../types'
-
 import { COLORS } from '../../consts'
 
 import initStore from '../initStore'
 
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
+import store from '@tests/stubs/store'
 
 import index from '.'
 
@@ -16,8 +15,6 @@ jest.mock('@mnrendra/read-package', () => ({
 describe('Test `printInfo` util:', () => {
   describe('By mocking `@mnrendra/read-package` to resolve a dummy data:', () => {
     const { PRIMARY, SECONDARY, RESET } = COLORS
-
-    const store: Store = {}
 
     beforeAll(async () => {
       mockedReadPackage.mockResolvedValue({
