@@ -39,24 +39,24 @@ describe('Test `printInfo` util:', () => {
       print.mockRestore()
     })
 
-    it('Should print a log containing the plugin\'s `pluginName`!', async () => {
-      await printInfo(store)
+    it('Should print a log containing the plugin\'s `pluginName`!', () => {
+      printInfo(store)
 
       expect(print).toHaveBeenCalled()
       expect(print).toHaveBeenCalledTimes(1)
       expect(print.mock.calls[0][0]).toContain(store.pluginName)
     })
 
-    it('Should print a log containing the plugin\'s `version`!', async () => {
-      await printInfo(store)
+    it('Should print a log containing the plugin\'s `version`!', () => {
+      printInfo(store)
 
       expect(print).toHaveBeenCalled()
       expect(print).toHaveBeenCalledTimes(1)
       expect(print.mock.calls[0][0]).toContain(store.version)
     })
 
-    it('Should print a log containing the plugin\'s `pluginName` and `version`!', async () => {
-      await printInfo(store)
+    it('Should print a log containing the plugin\'s `pluginName` and `version`!', () => {
+      printInfo(store)
 
       expect(print).toHaveBeenCalled()
       expect(print).toHaveBeenCalledTimes(1)
@@ -64,8 +64,8 @@ describe('Test `printInfo` util:', () => {
       expect(print.mock.calls[0][0]).toContain(store.version)
     })
 
-    it('Should print a log containing the plugin\'s `pluginName` and `version` with colors!', async () => {
-      await printInfo(store)
+    it('Should print a log containing the plugin\'s `pluginName` and `version` with colors!', () => {
+      printInfo(store)
 
       expect(print).toHaveBeenCalled()
       expect(print).toHaveBeenCalledTimes(1)

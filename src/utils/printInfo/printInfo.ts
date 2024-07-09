@@ -7,10 +7,10 @@ import { COLORS } from '../../consts'
  *
  * @param {Store} store - An `@mnrendrsa/rollup-plugin` `store` object.
  */
-const printInfo = async ({
+const printInfo = ({
   pluginName,
   version
-}: Store): Promise<void> => {
+}: Store): void => {
   // Get colors.
   const { PRIMARY, SECONDARY, RESET } = COLORS
 
