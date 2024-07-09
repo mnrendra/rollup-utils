@@ -14,7 +14,8 @@ const initStore = async (
 ): Promise<void> => {
   // Read the plugin's `package.json` by skipping this package name.
   const { name, version, homepage } = await readPackage({
-    skippedStacks: SKIPPED_STACK
+    skippedStacks: SKIPPED_STACK,
+    stackTraceLimit: 10
   })
 
   // Get the plugin name.
