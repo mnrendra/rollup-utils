@@ -1,10 +1,10 @@
-import type { Store } from './types'
+import type { Store } from '@/types'
 
-import { COLORS } from './consts'
-
+import store from '@tests/dummies/store'
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
-import store from '@tests/stubs/store'
+
+import { COLORS } from '@/consts'
 
 import { initStore, printInfo } from '.'
 

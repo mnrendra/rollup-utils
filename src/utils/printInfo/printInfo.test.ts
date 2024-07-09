@@ -1,10 +1,9 @@
-import { COLORS } from '../../consts'
-
-import initStore from '../initStore'
-
+import store from '@tests/dummies/store'
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
-import store from '@tests/stubs/store'
+
+import { COLORS } from '@/consts'
+import { initStore } from '@/utils'
 
 import printInfo from './printInfo'
 
