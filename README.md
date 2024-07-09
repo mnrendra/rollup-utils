@@ -8,8 +8,22 @@ npm i @mnrendra/rollup-utils
 
 ## Usage
 
+`yourPlugin/store.ts`
+```typescript
+import type { Store } from '@mnrendra/rollup-utils'
+
+const store: Store = {
+  pluginName: 'your-plugin-name',
+  name: 'your-module-name',
+  version: 'your-module-version',
+  homepage: 'your-module-homepage'
+}
+
+export default store
+```
+
 `yourPlugin/index.ts`
-```javascript
+```typescript
 import type { Plugin } from 'rollup'
 
 import { initStore, printInfo } from '@mnrendra/rollup-utils'
@@ -42,32 +56,20 @@ const main = async (): Promise<Plugin> => {
 export default main
 ```
 
-`yourPlugin/store.ts`
-```javascript
-import type { Store } from '@mnrendra/rollup-utils'
-
-const store: Store = {
-  pluginName: 'your-plugin-name',
-  name: 'your-module-name',
-  version: 'your-module-version',
-  homepage: 'your-module-homepage'
-}
-
-export default store
-```
-
 ## Utilities
 
 ### • initStore
-To initialize the store to save the plugin package data.
+To initialize a `store` to save expensive data (e.g., `package.json` values).
 
 ### • printInfo
-To print Rollup plugin info from the store.
+To print `Rollup` plugin information from the store.
 
 ## Types
-
-### • Store
-Store interface.
+```typescript
+import type {
+  Store
+} from '@mnrendra/rollup-utils'
+```
 
 ## License
 [MIT](https://github.com/mnrendra/rollup-utils/blob/HEAD/LICENSE)

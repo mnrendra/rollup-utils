@@ -1,8 +1,8 @@
-import type { Store } from '../../types'
+import type { Store } from '@/types'
 
+import store from '@tests/dummies/store'
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
-import store from '@tests/stubs/store'
 
 import initStore from './initStore'
 

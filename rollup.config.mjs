@@ -17,12 +17,7 @@ export default [
         sourcemap: true
       }
     ],
-    plugins: [
-      esbuild({ minify: true })
-    ],
-    onwarn ({ code }) {
-      if (code === 'MIXED_EXPORTS') return false
-    }
+    plugins: esbuild({ minify: true })
   },
   {
     external: (id) => !/^[./]/.test(id),

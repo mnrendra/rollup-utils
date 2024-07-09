@@ -2,7 +2,7 @@ import type { Store } from '../../types'
 
 import { readPackage } from '@mnrendra/read-package'
 
-import { PACKAGE_NAME, PLUGIN_PREFIX } from '../../consts'
+import { SKIPPED_STACK, DIST_PLUGIN_PREFIX } from '../../consts'
 
 /**
  * Initialize the store to save the plugin's package data.
@@ -14,11 +14,11 @@ const initStore = async (
 ): Promise<void> => {
   // Read the plugin's `package.json` by skipping this package name.
   const { name, version, homepage } = await readPackage({
-    skippedStacks: PACKAGE_NAME
+    skippedStacks: SKIPPED_STACK
   })
 
   // Get the plugin name.
-  const pluginName = name.replace(PLUGIN_PREFIX, '')
+  const pluginName = name.replace(DIST_PLUGIN_PREFIX, '')
 
   // Save the plugin `pluginName` to the store.
   store.pluginName = `${pluginName}`

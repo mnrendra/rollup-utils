@@ -1,5 +1,5 @@
-import readPackage from './readPackage'
+import unmockReadPackage from './readPackage'
 
 export {
-  readPackage
+  unmockReadPackage
 }
