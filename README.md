@@ -40,7 +40,7 @@ const main = async (): Promise<Plugin> => {
   await initStore(store)
 
   // Print info.
-  await printInfo(store)
+  printInfo(store)
 
   // Return Rollup plugin object.
   return {
