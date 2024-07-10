@@ -3,7 +3,7 @@ import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
 
 import { COLORS } from '@/consts'
-import { initStore } from '@/utils'
+import initStore from '@/utils/initStore'
 
 import printInfo from './printInfo'
 

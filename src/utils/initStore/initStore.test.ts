@@ -43,21 +43,24 @@ describe('Test `initStore` util:', () => {
       pluginName: 'first',
       name: '@mnrendra/rollup-plugin-first',
       version: '1.0.0',
-      homepage: 'http://localhost'
+      homepage: 'http://localhost',
+      aliases: []
     }
 
     const secondStore: Store = {
       pluginName: 'second',
       name: '@mnrendra/rollup-plugin-second',
       version: '2.0.0',
-      homepage: 'http://localhost'
+      homepage: 'http://localhost',
+      aliases: []
     }
 
     const thirdStore: Store = {
       pluginName: 'third',
       name: '@mnrendra/rollup-plugin-third',
       version: '3.0.0',
-      homepage: 'http://localhost'
+      homepage: 'http://localhost',
+      aliases: []
     }
 
     afterAll(() => {

@@ -34,5 +34,5 @@ const initStore = async (
   store.homepage = `${homepage}`
 }
 
-// Export the `initStore` as the default value.
+// Export `initStore` as the default value.
 export default initStore

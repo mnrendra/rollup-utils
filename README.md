@@ -16,7 +16,8 @@ const store: Store = {
   pluginName: 'your-plugin-name',
   name: 'your-module-name',
   version: 'your-module-version',
-  homepage: 'your-module-homepage'
+  homepage: 'your-module-homepage',
+  aliases: []
 }
 
 export default store
@@ -26,7 +27,11 @@ export default store
 ```typescript
 import type { Plugin } from 'rollup'
 
-import { initStore, printInfo } from '@mnrendra/rollup-utils'
+import {
+  initStore,
+  printInfo,
+  storeAliases
+  } from '@mnrendra/rollup-utils'
 
 import store from './store'
 
@@ -41,6 +46,9 @@ const main = async (): Promise<Plugin> => {
 
   // Print info.
   printInfo(store)
+
+  // Store aliases.
+  await storeAliases(store)
 
   // Return Rollup plugin object.
   return {
@@ -64,9 +72,13 @@ To initialize a `store` to save expensive data (e.g., `package.json` values).
 ### • printInfo
 To print `Rollup` plugin information from the store.
 
+### • storeAliases
+To store the [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) from `tsconfig.json` into the store.
+
 ## Types
 ```typescript
 import type {
+  Aliases,
   Store
 } from '@mnrendra/rollup-utils'
 ```

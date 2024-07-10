@@ -1,8 +1,10 @@
 export type {
+  Aliases,
   Store
 } from './types'
 
 export {
   initStore,
-  printInfo
+  printInfo,
+  storeAliases
 } from './utils'
