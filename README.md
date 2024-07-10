@@ -13,11 +13,11 @@ npm i @mnrendra/rollup-utils
 import type { Store } from '@mnrendra/rollup-utils'
 
 const store: Store = {
-  pluginName: 'your-plugin-name',
-  name: 'your-module-name',
-  version: 'your-module-version',
-  homepage: 'your-module-homepage',
-  aliases: []
+  pluginName: '', // `Rollup` plugin name
+  name: '', // `package.json` name
+  version: '', // `package.json` version
+  homepage: '', // `package.json` homepage
+  aliases: [] // `@mnrendra/types-aliases` value
 }
 
 export default store
@@ -31,7 +31,7 @@ import {
   initStore,
   printInfo,
   storeAliases
-  } from '@mnrendra/rollup-utils'
+} from '@mnrendra/rollup-utils'
 
 import store from './store'
 

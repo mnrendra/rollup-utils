@@ -1,8 +1,8 @@
-import type { Store } from '../../types'
+import type { Store } from '../types'
 
 import { parseTSConfigAlias } from '@mnrendra/tsconfig-alias-parser'
 
-import { SKIPPED_STACK } from '../../consts'
+import { SKIPPED_STACK } from '../consts'
 
 /**
  * Store aliases from `tsconfig.json` into a store.

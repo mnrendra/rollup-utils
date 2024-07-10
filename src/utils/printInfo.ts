@@ -1,6 +1,6 @@
-import type { Store } from '../../types'
+import type { Store } from '../types'
 
-import { COLORS } from '../../consts'
+import { COLORS } from '../consts'
 
 /**
  * Print Rollup plugin info from the store.

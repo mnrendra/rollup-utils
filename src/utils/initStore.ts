@@ -1,8 +1,8 @@
-import type { Store } from '../../types'
+import type { Store } from '../types'
 
 import { readPackage } from '@mnrendra/read-package'
 
-import { SKIPPED_STACK, DIST_PLUGIN_PREFIX } from '../../consts'
+import { SKIPPED_STACK, DIST_PLUGIN_PREFIX } from '../consts'
 
 /**
  * Initialize the store to save the plugin's package data.
