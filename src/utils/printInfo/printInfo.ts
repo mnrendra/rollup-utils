@@ -18,5 +18,5 @@ const printInfo = ({
   console.log(`${PRIMARY}• ${pluginName}: ${SECONDARY}${version}${RESET}`)
 }
 
-// Export the `printInfo` as the default value.
+// Export `printInfo` as the default value.
 export default printInfo

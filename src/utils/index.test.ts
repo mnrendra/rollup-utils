@@ -1,4 +1,4 @@
-import type { Store } from '@/types'
+import type { Aliases, Store } from '@/types'
 
 import store from '@tests/dummies/store'
 import mockedReadPackage from '@tests/mocks/readPackage'
@@ -6,7 +6,7 @@ import unmockReadPackage from '@tests/unmocks/readPackage'
 
 import { COLORS } from '@/consts'
 
-import { initStore, printInfo } from '.'
+import { initStore, printInfo, storeAliases } from '.'
 
 jest.mock('@mnrendra/read-package', () => ({
   readPackage: jest.fn()
@@ -46,21 +46,24 @@ describe('Test all utils:', () => {
         pluginName: 'first',
         name: '@mnrendra/rollup-plugin-first',
         version: '1.0.0',
-        homepage: 'http://localhost'
+        homepage: 'http://localhost',
+        aliases: []
       }
 
       const secondStore: Store = {
         pluginName: 'second',
         name: '@mnrendra/rollup-plugin-second',
         version: '2.0.0',
-        homepage: 'http://localhost'
+        homepage: 'http://localhost',
+        aliases: []
       }
 
       const thirdStore: Store = {
         pluginName: 'third',
         name: '@mnrendra/rollup-plugin-third',
         version: '3.0.0',
-        homepage: 'http://localhost'
+        homepage: 'http://localhost',
+        aliases: []
       }
 
       afterAll(() => {
@@ -196,6 +199,17 @@ describe('Test all utils:', () => {
         expect(print).toHaveBeenCalledTimes(1)
         expect(print).toHaveBeenCalledWith(`${PRIMARY}• ${store.pluginName}: ${SECONDARY}${store.version}${RESET}`)
       })
+    })
+  })
+
+  describe('Test `storeAliases` util:', () => {
+    it('Should able to memorize the first data!', async () => {
+      await storeAliases(store)
+
+      const received = store.aliases
+      const expected: Aliases = [{ alias: '@', path: './src' }, { alias: '@tests', path: './tests' }]
+
+      expect(received).toEqual(expected)
     })
   })
 })
