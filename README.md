@@ -19,7 +19,7 @@ const store: Store = {
   name: '', // `package.json` name
   version: '', // `package.json` version
   homepage: '', // `package.json` homepage
-  aliases: [] // `@mnrendra/types-aliases` value
+  aliases: [] // `@mnrendra/tsconfig-alias-parser` value
 }
 
 export default store
@@ -75,26 +75,48 @@ import {
 } from '@mnrendra/rollup-utils'
 
 export default {
-  onwarn: disableOnwarn()
+  onwarn: disableOnwarn() // To disable Rollup warning logs. ex: 'MIXED_EXPORTS' warning log.
 }
 ```
 
 ## Utilities
 
 ### • initStore
-To initialize a `store` to save expensive data (e.g., `package.json` values).
+To initialize the `store` to save the expensive data (e.g., `package.json` values).
+```typescript
+import type { Store } from '@mnrendra/rollup-utils'
+
+type InitStore = (store: Store) => Promise<void>
+```
+It will automatically read `package.json` and store the required properties in the `store`.
 
 ### • printInfo
-To print `Rollup` plugin information from the store.
+To print `Rollup` plugin information from the `store`.
+```typescript
+import type { Store } from '@mnrendra/rollup-utils'
+
+type PrintInfo = (store: Store) => void
+```
+The current format is: `• pluginName: version`. If you wish to change the format, please request it [here](https://github.com/mnrendra/rollup-utils/issues).
 
 ### • storeAliases
-To store the [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) from `tsconfig.json` into the store.
+To store the [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) from `tsconfig.json` in the `store`.
+```typescript
+import type { Store } from '@mnrendra/rollup-utils'
+
+type StoreAliases = (store: Store) => Promise<void>
+```
+It will automatically parse the `baseUrl` and `paths` from `tsconfig.json` into [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) using [@mnrendra/tsconfig-alias-parser](https://www.npmjs.com/package/@mnrendra/tsconfig-alias-parser), store them in the `store`, and make them available for use by alias resolver plugins, such as [@mnrendra/rollup-plugin-alias](https://www.npmjs.com/package/@mnrendra/rollup-plugin-alias).
 
 ### • disableOnwarn
-To disable `Rollup` warning logs.<BR/>
-<I>
-If you want to add any warning code enums as reserved enums and avoid adding your own generics, please feel free to request them [here](https://github.com/mnrendra/rollup-utils/issues). We will add them officially as soon as possible. Thank you!
-</i>
+To disable `Rollup` warning logs.
+```typescript
+import type { WarningHandlerWithDefault } from 'rollup'
+import type { WarnCode } from '@mnrendra/rollup-utils'
+
+type DisableOnwarn = <T>(warnCode: WarnCode<T> = 'MIXED_EXPORTS') => WarningHandlerWithDefault
+```
+If you wish to add any warning code enums as reserved enums and avoid adding your own generics, please feel free to request them [here](https://github.com/mnrendra/rollup-utils/issues). We will add them officially as soon as possible. Thank you!
 
 ## Types
 ```typescript

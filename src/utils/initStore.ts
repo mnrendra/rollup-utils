@@ -5,9 +5,15 @@ import { readPackage } from '@mnrendra/read-package'
 import { SKIPPED_STACK, DIST_PLUGIN_PREFIX } from '../consts'
 
 /**
- * Initialize the store to save the plugin's package data.
+ * To initialize the `store` to save the expensive data (e.g., `package.json`
+ * values).
  *
- * @param {Store} store - A JSON object.
+ * It will automatically read `package.json` and store the required properties
+ * in the `store`.
+ *
+ * @param {Store} store - An empty `Store` object.
+ *
+ * @see https://www.npmjs.com/package/@mnrendra/rollup-utils#-initstore
  */
 const initStore = async (
   store: Store

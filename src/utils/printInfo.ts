@@ -3,9 +3,14 @@ import type { Store } from '../types'
 import { COLORS } from '../consts'
 
 /**
- * Print Rollup plugin info from the store.
+ * To print `Rollup` plugin information from the `store`.
  *
- * @param {Store} store - An `@mnrendrsa/rollup-plugin` `store` object.
+ * The current format is: `• pluginName: version`. If you wish to change the
+ * format, please request it at https://github.com/mnrendra/rollup-utils/issues.
+ *
+ * @param {Store} store - A `Store` object.
+ *
+ * @see https://www.npmjs.com/package/@mnrendra/rollup-utils#-printinfo
  */
 const printInfo = ({
   pluginName,
