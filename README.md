@@ -8,6 +8,8 @@ npm i @mnrendra/rollup-utils
 
 ## Usage
 
+### Use in your plugin development:
+
 `yourPlugin/store.ts`
 ```typescript
 import type { Store } from '@mnrendra/rollup-utils'
@@ -64,6 +66,19 @@ const main = async (): Promise<Plugin> => {
 export default main
 ```
 
+### Use in your config:
+
+`yourProject/rollup.config.mjs`
+```javascript
+import {
+  disableOnwarn
+} from '@mnrendra/rollup-utils'
+
+export default {
+  onwarn: disableOnwarn()
+}
+```
+
 ## Utilities
 
 ### • initStore
@@ -75,11 +90,26 @@ To print `Rollup` plugin information from the store.
 ### • storeAliases
 To store the [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) from `tsconfig.json` into the store.
 
+### • disableOnwarn
+To disable `Rollup` warning logs.<BR/>
+<I>
+If you want to add any warning code enums as reserved enums and avoid adding your own generics, please feel free to request them [here](https://github.com/mnrendra/rollup-utils/issues). We will add them officially as soon as possible. Thank you!
+</i>
+
 ## Types
 ```typescript
 import type {
+  // store
+  Store,
+  // aliases
   Aliases,
-  Store
+  // onwarn
+  WarnCodeEum,
+  WarnCodeGeneric,
+  WarnCode,
+  WarningHandlerWithDefault,
+  RollupLog,
+  LoggingFunction
 } from '@mnrendra/rollup-utils'
 ```
 
