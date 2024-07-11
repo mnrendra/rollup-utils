@@ -11,17 +11,17 @@ import { WARN_LOG_DEF } from '../consts'
 /**
  * To disable `Rollup` warning logs.
  *
- * If you want to add any warning code enums as reserved enums and avoid adding
+ * If you wish to add any warning code enums as reserved enums and avoid adding
  * your own generics, please feel free to request them at
  * https://github.com/mnrendra/rollup-utils/issues. We will add them officially
  * as soon as possible. Thank you!
  *
- * @param {WarnCode} [warnCode] - A Rollup warning code can be either a `string`
- * or an `array` (a list of Rollup warning codes).
+ * @param {WarnCode} [warnCode] - A `Rollup` warning code can be either a
+ * `string` or an `array` (a list of `Rollup` warning codes).
  *
  * @returns {WarningHandlerWithDefault} Rollup `onwarn` function.
  *
- * @see https://www.npmjs.com/package/@mnrendra/rollup-utils#-onwarn
+ * @see https://www.npmjs.com/package/@mnrendra/rollup-utils#-disableonwarn
  */
 const disableOnwarn = <Code extends WarnCodeGeneric = typeof WARN_LOG_DEF>(
   warnCode: WarnCode<Code> = WARN_LOG_DEF as WarnCode<Code>
