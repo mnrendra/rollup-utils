@@ -12,6 +12,16 @@ jest.mock('@mnrendra/read-package', () => ({
 }))
 
 describe('Test `printInfo` util:', () => {
+  let cl: jest.SpyInstance
+
+  beforeEach(() => {
+    cl = jest.spyOn(console, 'log').mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    cl.mockRestore()
+  })
+
   describe('By mocking `@mnrendra/read-package` to resolve a dummy data:', () => {
     const { PRIMARY, SECONDARY, RESET } = COLORS
 
@@ -29,47 +39,37 @@ describe('Test `printInfo` util:', () => {
       unmockReadPackage(mockedReadPackage)
     })
 
-    let print: jest.SpyInstance
-
-    beforeEach(() => {
-      print = jest.spyOn(console, 'log').mockImplementation(() => {})
-    })
-
-    afterEach(() => {
-      print.mockRestore()
-    })
-
     it('Should print a log containing the plugin\'s `pluginName`!', () => {
       printInfo(store)
 
-      expect(print).toHaveBeenCalled()
-      expect(print).toHaveBeenCalledTimes(1)
-      expect(print.mock.calls[0][0]).toContain(store.pluginName)
+      expect(cl).toHaveBeenCalled()
+      expect(cl).toHaveBeenCalledTimes(1)
+      expect(cl.mock.calls[0][0]).toContain(store.pluginName)
     })
 
     it('Should print a log containing the plugin\'s `version`!', () => {
       printInfo(store)
 
-      expect(print).toHaveBeenCalled()
-      expect(print).toHaveBeenCalledTimes(1)
-      expect(print.mock.calls[0][0]).toContain(store.version)
+      expect(cl).toHaveBeenCalled()
+      expect(cl).toHaveBeenCalledTimes(1)
+      expect(cl.mock.calls[0][0]).toContain(store.version)
     })
 
     it('Should print a log containing the plugin\'s `pluginName` and `version`!', () => {
       printInfo(store)
 
-      expect(print).toHaveBeenCalled()
-      expect(print).toHaveBeenCalledTimes(1)
-      expect(print.mock.calls[0][0]).toContain(store.pluginName)
-      expect(print.mock.calls[0][0]).toContain(store.version)
+      expect(cl).toHaveBeenCalled()
+      expect(cl).toHaveBeenCalledTimes(1)
+      expect(cl.mock.calls[0][0]).toContain(store.pluginName)
+      expect(cl.mock.calls[0][0]).toContain(store.version)
     })
 
     it('Should print a log containing the plugin\'s `pluginName` and `version` with colors!', () => {
       printInfo(store)
 
-      expect(print).toHaveBeenCalled()
-      expect(print).toHaveBeenCalledTimes(1)
-      expect(print).toHaveBeenCalledWith(`${PRIMARY}• ${store.pluginName}: ${SECONDARY}${store.version}${RESET}`)
+      expect(cl).toHaveBeenCalled()
+      expect(cl).toHaveBeenCalledTimes(1)
+      expect(cl).toHaveBeenCalledWith(`${PRIMARY}• ${store.pluginName}: ${SECONDARY}${store.version}${RESET}`)
     })
   })
 })

@@ -1,10 +1,20 @@
 export type {
+  // store
+  Store,
+  // aliases
   Aliases,
-  Store
+  // onwarn
+  WarnCodeEum,
+  WarnCodeGeneric,
+  WarnCode,
+  WarningHandlerWithDefault,
+  RollupLog,
+  LoggingFunction
 } from './types'
 
 export {
   initStore,
   printInfo,
-  storeAliases
+  storeAliases,
+  disableOnwarn
 } from './utils'

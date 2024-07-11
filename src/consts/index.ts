@@ -12,18 +12,26 @@ export const DIST_PLUGIN_PREFIX = `${SCOPE}/${PLUGIN_PREFIX}`
 
 export const DIST_PATH = `node_modules/${DIST_NAME}`
 
-export const DIST_PLUGIN_PATH_PREFIX = `node_modules/${DIST_PLUGIN_PREFIX}`
+export const DIST_PLUGIN_PREFIX_PATH = `node_modules/${DIST_PLUGIN_PREFIX}`
 
 export const SKIPPED_STACK = normalize(DIST_PATH)
 
 export const ANSI_COLORS = {
   RESET: '\x1b[0m',
   BRIGHT_YELLOW: '\x1b[93m',
+  BRIGHT_YELLOW_BOLD: '\x1b[1;93m',
   BRIGHT_BLACK: '\x1b[90m'
-}
+} as const
 
 export const COLORS = {
   RESET: ANSI_COLORS.RESET,
   PRIMARY: ANSI_COLORS.BRIGHT_YELLOW,
-  SECONDARY: ANSI_COLORS.BRIGHT_BLACK
-}
+  SECONDARY: ANSI_COLORS.BRIGHT_BLACK,
+  WARN: ANSI_COLORS.BRIGHT_YELLOW_BOLD
+} as const
+
+export const WARN_LOG = {
+  MIXED_EXPORTS: 'Mixing named and default exports'
+} as const
+
+export const WARN_LOG_DEF = 'MIXED_EXPORTS'
