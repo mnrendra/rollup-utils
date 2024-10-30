@@ -16,16 +16,16 @@ export type LogParam = ExtractArrayType<LogParams>
 
 export type LogReturn = ReturnType<LoggingFunction>
 
-export type WarnCodeEum = keyof typeof WARN_LOG
+export type WarnCodeEnum = keyof typeof WARN_LOG
 
-type WarnCodeEumGeneric<Code = WarnCodeEum> =
-| WarnCodeEum
+type WarnCodeEnumGeneric<Code = WarnCodeEnum> =
+| WarnCodeEnum
 | Code
 
 export type WarnCodeGeneric =
-| WarnCodeEum
+| WarnCodeEnum
 | string
 
 export type WarnCode<Code extends WarnCodeGeneric = typeof WARN_LOG_DEF> =
-| WarnCodeEumGeneric<Code>
-| Array<WarnCodeEumGeneric<Code>>
+| WarnCodeEnumGeneric<Code>
+| Array<WarnCodeEnumGeneric<Code>>

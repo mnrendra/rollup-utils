@@ -44,7 +44,7 @@ import store from './store'
  */
 const main = async (): Promise<Plugin> => {
   // Initialize store.
-  await initStore(store)
+  await initStore(store, { any: null })
 
   // Print info.
   printInfo(store)
@@ -75,7 +75,7 @@ import {
 } from '@mnrendra/rollup-utils'
 
 export default {
-  onwarn: disableOnwarn() // To disable Rollup warning logs. ex: 'MIXED_EXPORTS' warning log.
+  onwarn: disableOnwarn() // To disable Rollup warning logs. e.g., disables warnings like 'MIXED_EXPORTS'.
 }
 ```
 
@@ -86,9 +86,9 @@ To initialize the `store` to save the expensive data (e.g., `package.json` value
 ```typescript
 import type { Store } from '@mnrendra/rollup-utils'
 
-type InitStore = (store: Store) => Promise<void>
+type InitStore = <T extends Record<string, any> = Record<string, any>>(store: Store, additional?: T) => Promise<void>
 ```
-It will automatically read `package.json` and store the required properties in the `store`.
+It automatically read `package.json` and store the required properties in the `store`.
 
 ### • printInfo
 To print `Rollup` plugin information from the `store`.
@@ -106,7 +106,7 @@ import type { Store } from '@mnrendra/rollup-utils'
 
 type StoreAliases = (store: Store) => Promise<void>
 ```
-It will automatically parse the `baseUrl` and `paths` from `tsconfig.json` into [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) using [@mnrendra/tsconfig-alias-parser](https://www.npmjs.com/package/@mnrendra/tsconfig-alias-parser), store them in the `store`, and make them available for use by alias resolver plugins, such as [@mnrendra/rollup-plugin-alias](https://www.npmjs.com/package/@mnrendra/rollup-plugin-alias).
+It automatically parse the `baseUrl` and `paths` from `tsconfig.json` into [aliases](https://www.npmjs.com/package/@mnrendra/types-aliases) using [@mnrendra/tsconfig-alias-parser](https://www.npmjs.com/package/@mnrendra/tsconfig-alias-parser), store them in the `store`, and make them available for use by alias resolver plugins, such as [@mnrendra/rollup-plugin-alias](https://www.npmjs.com/package/@mnrendra/rollup-plugin-alias).
 
 ### • disableOnwarn
 To disable `Rollup` warning logs.
@@ -126,7 +126,7 @@ import type {
   // aliases
   Aliases,
   // onwarn
-  WarnCodeEum,
+  WarnCodeEnum,
   WarnCodeGeneric,
   WarnCode,
   WarningHandlerWithDefault,
