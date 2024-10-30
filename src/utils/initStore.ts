@@ -12,11 +12,13 @@ import { SKIPPED_STACK, DIST_PLUGIN_PREFIX } from '../consts'
  * in the `store`.
  *
  * @param {Store} store - An empty `Store` object.
+ * @param {Record<string, any>} additional - Additional store properties.
  *
  * @see https://www.npmjs.com/package/@mnrendra/rollup-utils#-initstore
  */
-const initStore = async (
-  store: Store
+const initStore = async <T extends Record<string, any> = Record<string, any>>(
+  store: Store,
+  additional: T = {} as unknown as T
 ): Promise<void> => {
   // Read the plugin's `package.json` by skipping this package name.
   const { name, version, homepage } = await readPackage({
@@ -38,6 +40,11 @@ const initStore = async (
 
   // Save the plugin `homepage` to the store.
   store.homepage = `${homepage}`
+
+  // Save the additional store properties.
+  Object.keys(additional).forEach((key) => {
+    (store as any)[key] = additional[key]
+  })
 }
 
 // Export `initStore` as the default value.

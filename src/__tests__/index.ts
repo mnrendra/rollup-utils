@@ -12,7 +12,7 @@ import {
   printInfo,
   storeAliases,
   disableOnwarn
-} from '.'
+} from '..'
 
 jest.mock('@mnrendra/read-package', () => ({
   readPackage: jest.fn()
@@ -40,6 +40,16 @@ describe('Test all utils:', () => {
         expect(store.pluginName).toBe('dummy')
         expect(store.version).toBe('0.0.0-development')
         expect(store.homepage).toBe('http://localhost')
+      })
+
+      it('Should initialize the store with package data and additional store properties!', async () => {
+        await initStore(store, { any: null })
+
+        expect(store.name).toBe('@mnrendra/rollup-plugin-dummy')
+        expect(store.pluginName).toBe('dummy')
+        expect(store.version).toBe('0.0.0-development')
+        expect(store.homepage).toBe('http://localhost')
+        expect((store as any).any).toBe(null)
       })
     })
 

@@ -4,7 +4,7 @@ export type {
   // aliases
   Aliases,
   // onwarn
-  WarnCodeEum,
+  WarnCodeEnum,
   WarnCodeGeneric,
   WarnCode,
   WarningHandlerWithDefault,

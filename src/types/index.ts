@@ -9,7 +9,7 @@ export type {
   LogParams,
   LogParam,
   LogReturn,
-  WarnCodeEum,
+  WarnCodeEnum,
   WarnCodeGeneric,
   WarnCode
 } from './OnWarn'
