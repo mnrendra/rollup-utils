@@ -1,18 +1,15 @@
-import type { Aliases, Store } from '@/types'
+import type { Store } from '@/types'
 
 import store from '@tests/dummies/store'
-import warnLog from '@tests/dummies/warnLog'
 import mockedReadPackage from '@tests/mocks/readPackage'
 import unmockReadPackage from '@tests/unmocks/readPackage'
 
-import { COLORS, WARN_LOG, WARN_LOG_DEF } from '@/consts'
+import { COLORS } from '@/consts'
 
 import {
   initStore,
-  printInfo,
-  storeAliases,
-  disableOnwarn
-} from '..'
+  printInfo
+} from '../src'
 
 jest.mock('@mnrendra/read-package', () => ({
   readPackage: jest.fn()
@@ -62,24 +59,21 @@ describe('Test all utils:', () => {
         pluginName: 'first',
         name: '@mnrendra/rollup-plugin-first',
         version: '1.0.0',
-        homepage: 'http://localhost',
-        aliases: []
+        homepage: 'http://localhost'
       }
 
       const secondStore: Store = {
         pluginName: 'second',
         name: '@mnrendra/rollup-plugin-second',
         version: '2.0.0',
-        homepage: 'http://localhost',
-        aliases: []
+        homepage: 'http://localhost'
       }
 
       const thirdStore: Store = {
         pluginName: 'third',
         name: '@mnrendra/rollup-plugin-third',
         version: '3.0.0',
-        homepage: 'http://localhost',
-        aliases: []
+        homepage: 'http://localhost'
       }
 
       afterAll(() => {
@@ -214,145 +208,6 @@ describe('Test all utils:', () => {
         expect(cl).toHaveBeenCalled()
         expect(cl).toHaveBeenCalledTimes(1)
         expect(cl).toHaveBeenCalledWith(`${PRIMARY}• ${store.pluginName}: ${SECONDARY}${store.version}${RESET}`)
-      })
-    })
-  })
-
-  describe('Test `storeAliases` util:', () => {
-    it('Should able to memorize the first data!', async () => {
-      await storeAliases(store)
-
-      const received = store.aliases
-      const expected: Aliases = [{ alias: '@', path: './src' }, { alias: '@tests', path: './tests' }]
-
-      expect(received).toEqual(expected)
-    })
-  })
-
-  describe('Test `disableOnwarn` util:', () => {
-    let cl: jest.SpyInstance
-
-    beforeEach(() => {
-      cl = jest.spyOn(console, 'log').mockImplementation(() => {})
-    })
-
-    afterEach(() => {
-      cl.mockRestore()
-    })
-
-    describe(`Test \`${WARN_LOG_DEF}\` warning:`, () => {
-      const code = WARN_LOG_DEF
-      const message = WARN_LOG[code]
-
-      it('Should disable the warning log when given an empty argument!', () => {
-        const received = disableOnwarn()
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).not.toHaveBeenCalled()
-        expect(cl).not.toHaveBeenCalled()
-      })
-
-      it(`Should disable the warning log when given a \`${code}\` string code!`, () => {
-        const received = disableOnwarn(code)
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).not.toHaveBeenCalled()
-        expect(cl).not.toHaveBeenCalled()
-      })
-
-      it(`Should disable the warning log when given an array containing \`${code}\` string codes!`, () => {
-        const received = disableOnwarn([code])
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).not.toHaveBeenCalled()
-        expect(cl).not.toHaveBeenCalled()
-      })
-    })
-
-    describe('Test any warnings:', () => {
-      const code = 'ANY'
-      const message = 'Any warnings!'
-
-      it('Should keep logging when given an empty argument and the code is not in the disable list!', () => {
-        const received = disableOnwarn()
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).toHaveBeenCalled()
-        expect(warnLog).toHaveBeenCalledTimes(1)
-        expect(cl.mock.calls[0][0]).toContain(`(!) ${message}`)
-      })
-
-      it(`Should keep logging when given a \`${WARN_LOG_DEF}\` string code and the code is not in the disable list!`, () => {
-        const received = disableOnwarn(WARN_LOG_DEF)
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).toHaveBeenCalled()
-        expect(warnLog).toHaveBeenCalledTimes(1)
-        expect(cl.mock.calls[0][0]).toContain(`(!) ${message}`)
-      })
-
-      it(`Should keep logging when given an array containing \`${WARN_LOG_DEF}\` string codes and the code is not in the disable list!`, () => {
-        const received = disableOnwarn([WARN_LOG_DEF])
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).toHaveBeenCalled()
-        expect(warnLog).toHaveBeenCalledTimes(1)
-        expect(cl.mock.calls[0][0]).toContain(`(!) ${message}`)
-      })
-    })
-
-    describe('Test generic warnings:', () => {
-      const code = 'GENERIC'
-      const message = 'Generic warnings!'
-
-      it(`Should disable the warning log when given a \`${code}\` string code!`, () => {
-        const received = disableOnwarn(code)
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).not.toHaveBeenCalled()
-        expect(cl).not.toHaveBeenCalled()
-      })
-
-      it(`Should keep logging the \`${WARN_LOG_DEF}\` warning log when given a \`${code}\` string code!`, () => {
-        const received = disableOnwarn(code)
-
-        received({
-          code: WARN_LOG_DEF,
-          message: WARN_LOG[WARN_LOG_DEF]
-        }, warnLog)
-
-        expect(warnLog).toHaveBeenCalled()
-        expect(warnLog).toHaveBeenCalledTimes(1)
-        expect(cl.mock.calls[0][0]).toContain(`(!) ${WARN_LOG[WARN_LOG_DEF]}`)
-      })
-
-      it(`Should disable the warning log when given an array containing \`${code}\` string codes!`, () => {
-        const received = disableOnwarn([code])
-
-        received({ code, message }, warnLog)
-
-        expect(warnLog).not.toHaveBeenCalled()
-        expect(cl).not.toHaveBeenCalled()
-      })
-
-      it(`Should keep logging the \`${WARN_LOG_DEF}\` warning log when given an array containing \`${code}\` string codes!`, () => {
-        const received = disableOnwarn([code])
-
-        received({
-          code: WARN_LOG_DEF,
-          message: WARN_LOG[WARN_LOG_DEF]
-        }, warnLog)
-
-        expect(warnLog).toHaveBeenCalled()
-        expect(warnLog).toHaveBeenCalledTimes(1)
-        expect(cl.mock.calls[0][0]).toContain(`(!) ${WARN_LOG[WARN_LOG_DEF]}`)
       })
     })
   })

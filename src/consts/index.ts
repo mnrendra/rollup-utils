@@ -29,9 +29,3 @@ export const COLORS = {
   SECONDARY: ANSI_COLORS.BRIGHT_BLACK,
   WARN: ANSI_COLORS.BRIGHT_YELLOW_BOLD
 } as const
-
-export const WARN_LOG = {
-  MIXED_EXPORTS: 'Mixing named and default exports'
-} as const
-
-export const WARN_LOG_DEF = 'MIXED_EXPORTS'

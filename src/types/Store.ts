@@ -1,5 +1,3 @@
-import type { Aliases } from '.'
-
 /**
  * `@mnrendra/rollup-utils` interface to validate the `store` properties.
  *
@@ -38,11 +36,4 @@ export interface Store {
    * more info link.
    */
   homepage: string
-
-  /**
-   * Your or your consumer's `aliases`, parsed from
-   * `@mnrendra/tsconfig-alias-parser`, that will be used by alias resolver
-   * plugins, such as `@mnrendra/rollup-plugin-alias`.
-   */
-  aliases: Aliases
 }
