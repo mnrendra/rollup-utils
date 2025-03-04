@@ -4,8 +4,7 @@ const store: Store = {
   pluginName: '',
   name: '',
   version: '',
-  homepage: '',
-  aliases: []
+  homepage: ''
 }
 
 export default store
