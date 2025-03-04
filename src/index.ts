@@ -1,17 +1,8 @@
-import type {
-  Store
-} from './types'
-
-import {
-  initStore,
-  printInfo
-} from './utils'
-
 export type {
   Store
-}
+} from './types'
 
 export {
   initStore,
   printInfo
-}
+} from './utils'

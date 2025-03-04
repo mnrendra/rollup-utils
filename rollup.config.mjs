@@ -5,24 +5,12 @@ export default [
   {
     external: (id) => !/^[./]/.test(id),
     input: 'src/index.ts',
-    output: [
-      {
-        file: 'dist/index.js',
-        format: 'cjs',
-        sourcemap: true
-      },
-      {
-        file: 'dist/index.mjs',
-        format: 'es',
-        sourcemap: true
-      }
-    ],
-    plugins: [
-      esbuild({ minify: true })
-    ],
-    onwarn ({ code }) {
-      if (code === 'MIXED_EXPORTS') return false
-    }
+    output: {
+      file: 'dist/index.js',
+      format: 'cjs',
+      sourcemap: true
+    },
+    plugins: esbuild({ minify: true })
   },
   {
     external: (id) => !/^[./]/.test(id),
